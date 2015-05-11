@@ -1,7 +1,7 @@
 body {
     font-family: Calibri;
     font-size: 18px !important;
-    background-image: url('../imgs/bg-pattern.jpg');
+    background-image: url('../img/bg-pattern.jpg');
 }
 
 .logo {
@@ -10,6 +10,11 @@ body {
     vertical-align: top;
     text-align: center;
     border-bottom: solid 1px #757575;
+}
+
+.chooseCover {
+    width: 600px;
+    height: 100px;
 }
 
 .logo img {
