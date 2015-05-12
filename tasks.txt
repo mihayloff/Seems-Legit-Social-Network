@@ -1,0 +1,25 @@
+Tasks:
+
+1. Edit Profile - Fields Validation
+
+2. Register Profile - Fields Validation
+
+3. Login - Show Profile Image
+
+4. Show news feed
+
+5. Show friend requests
+
+6. Search people
+
+7. Send people friend requests
+
+8. Show Friends preview
+
+9. Add comments to posts.
+
+10. Change Password
+
+11. Post messages to friends wall
+
+12. Like/Unlike comments and posts

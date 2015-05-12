@@ -17,21 +17,21 @@
             <ul class="nav navbar-nav">
                 <li>
                     <div class="image-container" id="userProfileImage">
-                        <img class="smallThumbnail" />
+                        <img class="smallThumbnail" src="{{ profileImage}}" />
                     </div>
                 </li>
                 <li>
                     <a class="navbar-brand" id="usernamePreview">
-                        <u style="margin-right: 30px">Username</u>
+                        <u style="margin-right: 30px">{{ username }}</u>
                     </a>
                 </li>
                 <li><a href="#/">News Feed</a></li>
-                <li><a href="#/Edit">Friend Requests</a></li>
-                <li><a href="#/Post">Edit Profile</a></li>
-                <li><a href="#/Post">Change Password</a></li>
+                <li><a href="#/FriendRequests">Friend Requests</a></li>
+                <li><a href="#/EditProfile">Edit Profile</a></li>
+                <li><a href="#/ChangePassword">Change Password</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right">
-                <li><a href="#/Logout">Logout</a></li>
+                <li ng-controller="AuthenticationController"><a href="" ng-click="logout()">Logout</a></li>
             </ul>
         </div>
     </nav>

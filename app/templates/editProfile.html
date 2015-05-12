@@ -1,0 +1,74 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main">
+    <section class="edit-profile">
+        <form class="register form-horizontal" ng-controller="AuthenticationController" ng-init="getUserData()" ng-submit="editProfile()">
+            <fieldset>
+                <legend>Edit Profile</legend>
+                <div class="col-lg-9 form-info">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Name:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" ng-model="userData.name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" ng-model="userData.email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="margin-left: 20px;" class="col-lg-3 control-label">Cover Image:</label>
+                        <div class="col-lg-3 picture-upload">
+                            <div class="form-group">
+                                <img class="chooseCover" id="profilePictureData" src="{{ userData.coverImageData }}" />
+                            </div>
+                            <div class="form-group">
+                                <p class="picture-name"></p>
+                                <button type="button" id="upload-cover-file-button" class="btn btn-md btn-info">Upload</button>
+                                <input type="file" id="coverPicture" />
+                                <p>Size limit: 1028KB</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Gender:</label>
+                        <div class="col-lg-9">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" class="genderRadio" id="gender1" ng-model="userData.gender" name="gender-radio" value="Male" id="male">Male
+                                </label>
+                                <label>
+                                    <input type="radio" class="genderRadio" id="gender2" ng-model="userData.gender" name="gender-radio" value="Female" id="female">Female
+                                </label>
+                                <label>
+                                    <input type="radio" class="genderRadio" id="gender0" ng-model="userData.gender" name="gender-radio" value="Other" id="other">Other
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 picture-upload">
+                    <div class="form-group">
+                        <img class="thumbnail picture-preview" id="coverPictureData" src="{{ userData.profileImageData }}" />
+                    </div>
+                    <div class="form-group">
+                        <p class="picture-name"></p>
+                        <button type="button" id="upload-file-button" class="btn btn-md btn-info">Upload</button>
+                        <input type="file" id="picture"/>
+                        <p>Size limit: 128KB</p>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-12">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <input type="submit" name="name" value="Save Changes" class="btn btn-lg btn-primary" />
+                        <button type="button" class="cancel-btn btn btn-lg btn-default">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+</div>

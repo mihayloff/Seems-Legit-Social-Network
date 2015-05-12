@@ -1,4 +1,6 @@
-﻿app.controller('MainController', function ($scope) {
+﻿app.controller('MainController', function ($scope, authenticationService) {
 
-    $scope.isLogged = localStorage['logged-in'] ? true : false;
+    $scope.username = authenticationService.getUsername();
+    $scope.profileImage = localStorage['profileImage'];
+    $scope.isLogged = authenticationService.isLogged();
 });

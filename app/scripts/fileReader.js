@@ -16,6 +16,7 @@ $(selector).on('change', '#picture', function () {
 		reader.onload = function () {
 		    console.log(reader);
 		    $('.picture-preview').attr('src', reader.result);
+		    $('#profilePictureData').attr('value', reader.result);
 		    // TODO: set file name to picture name paragraph
 		    $('.picture-name').text();
 		    // TODO: set read image data for image preview
@@ -26,6 +27,7 @@ $(selector).on('change', '#picture', function () {
 	}
 });
 
+// Cover image events
 $(selector).on('click', '#upload-cover-file-button', function () {
     $('#coverPicture').click();
 });
@@ -41,6 +43,7 @@ $(selector).on('change', '#coverPicture', function () {
         reader.onload = function () {
             console.log(reader);
             $('.chooseCover').attr('src', reader.result);
+            $('#coverPictureData').attr('value', reader.result);
         };
         reader.readAsDataURL(file);
     } else {
