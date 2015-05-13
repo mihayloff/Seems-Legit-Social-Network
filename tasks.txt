@@ -1,14 +1,14 @@
 Tasks:
 
-1. Edit Profile - Fields Validation
+1. Edit Profile - Fields Validation ---- DONE
 
-2. Register Profile - Fields Validation
+2. Register Profile - Fields Validation ---- DONE
 
-3. Login - Show Profile Image
+3. Login - Show Profile Image ---- DONE
 
 4. Show news feed
 
-5. Show friend requests
+5. Show friend requests - DONE
 
 6. Search people
 
@@ -18,8 +18,10 @@ Tasks:
 
 9. Add comments to posts.
 
-10. Change Password
+10. Change Password ---- DONE
 
 11. Post messages to friends wall
 
 12. Like/Unlike comments and posts
+
+13. Add picture size validation in file reader

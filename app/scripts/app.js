@@ -29,6 +29,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/home.html',
             controller: 'MainController'
         })
+        .when('/FriendRequests', {
+            templateUrl: 'templates/friendRequests.html',
+            controller: 'MainController'
+        })
         .when('/EditProfile', {
             templateUrl: 'templates/editProfile.html',
             controller: 'MainController'

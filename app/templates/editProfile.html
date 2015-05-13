@@ -22,7 +22,7 @@
                         <label style="margin-left: 20px;" class="col-lg-3 control-label">Cover Image:</label>
                         <div class="col-lg-3 picture-upload">
                             <div class="form-group">
-                                <img class="chooseCover" id="profilePictureData" src="{{ userData.coverImageData }}" />
+                                <img class="chooseCover" id="coverPictureData" src="{{ userData.coverImageData }}" />
                             </div>
                             <div class="form-group">
                                 <p class="picture-name"></p>
@@ -37,13 +37,13 @@
                         <div class="col-lg-9">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender1" ng-model="userData.gender" name="gender-radio" value="Male" id="male">Male
+                                    <input type="radio" class="genderRadio" id="gender1" ng-model="gender" name="gender-radio" value="Male">Male
                                 </label>
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender2" ng-model="userData.gender" name="gender-radio" value="Female" id="female">Female
+                                    <input type="radio" class="genderRadio" id="gender2" ng-model="gender" name="gender-radio" value="Female">Female
                                 </label>
                                 <label>
-                                    <input type="radio" class="genderRadio" id="gender0" ng-model="userData.gender" name="gender-radio" value="Other" id="other">Other
+                                    <input type="radio" class="genderRadio" id="gender0" ng-model="gender" name="gender-radio" value="Other">Other
                                 </label>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
 
                 <div class="col-lg-3 picture-upload">
                     <div class="form-group">
-                        <img class="thumbnail picture-preview" id="coverPictureData" src="{{ userData.profileImageData }}" />
+                        <img class="thumbnail picture-preview" id="profilePictureData" src="{{ userData.profileImageData }}" />
                     </div>
                     <div class="form-group">
                         <p class="picture-name"></p>

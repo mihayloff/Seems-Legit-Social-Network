@@ -89,11 +89,11 @@
         var email = $scope.userData.email;
         var coverImage = $('#coverPictureData').attr('src');
         var profileImage = $('#profilePictureData').attr('src');
-        var gender = $scope.userData.gender;
+        var gender = $("input:radio[name=gender-radio]:checked").val();
 
-        if (gender.toLowerCase() !== 'other' && 
-            gender.toLowerCase() !== 'male' &&
-            gender.toLowerCase() !== 'female') {
+        if (gender !== 'Other' && 
+            gender !== 'Male' &&
+            gender !== 'Female') {
             poppy.pop('error', 'Error', 'The gender is invalid');
             return;
         } else if (name.length < 6) {

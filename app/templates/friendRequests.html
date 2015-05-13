@@ -1,0 +1,11 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main" ng-controller="FriendsController" ng-init="getFriendRequests()">
+    <h1>Friend Requests</h1>
+    <div class="requestContainer btn-info" ng-repeat="userData in friendRequests">
+        <h2 class="friendRequestName">{{userData.user.name}}</h2>
+        <img class="thumbnail friendRequestImage" ng-src="{{userData.user.profileImageData}}" alt=""/>
+        <button class="btn-lg btn-group-lg btn-success friendRequestButton" ng-click="acceptFriendRequest(userData.id)">Accept</button>
+        <button class="btn-lg btn-group-lg btn-danger friendRequestButton" ng-click="rejectFriendRequest(userData.id)">Reject</button>
+    </div>
+</div>
