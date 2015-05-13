@@ -1,10 +1,10 @@
-﻿<div class="logo">
+﻿<div class="logo btn-primary">
     <a href="#/"><img src="img/beer.png" /></a>
     <span>Seems Legit Bro</span>
 </div>
 
 <header class="header" id="header" ng-if="isLogged">
-    <nav class="navbar navbar-default">
+    <nav class="navbar btn-warning" id="navbar">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -30,8 +30,15 @@
                 <li><a href="#/EditProfile">Edit Profile</a></li>
                 <li><a href="#/ChangePassword">Change Password</a></li>
             </ul>
+
             <ul class="nav navbar-nav pull-right">
-                <li ng-controller="AuthenticationController"><a href="" ng-click="logout()">Logout</a></li>
+                <li>
+                    <input type="text" id="searchBox" value="" ng-model="searchBox" />
+                    <a id="searchButton" ng-href="#/Search/{{searchBox}}"><img src="img/search.png" alt=""></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li ng-controller="AuthenticationController"><a href="" style="color: #F96C65;" ng-click="logout()">Logout</a></li>
             </ul>
         </div>
     </nav>

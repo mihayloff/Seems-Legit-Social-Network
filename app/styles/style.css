@@ -111,7 +111,35 @@ img.thumbnail {
 }
 
 #usernamePreview {
-    color: red;
+    color: purple;
+}
+
+.logo:hover {
+    background: #337AB7 !important;
+}
+
+#navbar:hover {
+    background: #F0AD4E !important;
+}
+
+#searchBox {
+    margin: 7px;
+    margin-left: 160px;
+    border-radius: 10px;
+    border: 1px solid #337AAD;
+    background: #CCC;
+    color: #F96C65;
+}
+
+#searchButton {
+    display: inline !important;
+    padding: 5px;
+    border-radius: 10px;
+    background: inherit !important;
+}
+
+#searchButton:hover {
+    background: inherit !important;
 }
 
 img.smallThumbnail {

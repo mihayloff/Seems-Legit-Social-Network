@@ -33,6 +33,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/friendRequests.html',
             controller: 'MainController'
         })
+        .when('/Search/:id', {
+            templateUrl: 'templates/searchResults.html',
+            controller: 'MainController'
+        })
         .when('/EditProfile', {
             templateUrl: 'templates/editProfile.html',
             controller: 'MainController'
