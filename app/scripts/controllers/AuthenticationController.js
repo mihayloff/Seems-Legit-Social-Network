@@ -28,10 +28,18 @@
 
         authenticationService.login(data, function (serverData) {
             authenticationService.setCredentials(serverData);
+            authenticationService.getDataAboutMe(function(successData) {
+                authenticationService.setProfileImage(successData.profileImageData);
 
-            $scope.navigateToPage('You have logged in successfully.');
+                $scope.navigateToPage('You have logged in successfully.');
+            }, function() {
+                poppy.pop('error',
+                    'Error',
+                    'An error occured while trying to connect to the server. Please try again later');
+            })
+
         }, function (error) {
-            poppy.pop('error', 'Error', error.message);
+            poppy.pop('error', 'Error', 'The username or password are incorrect. Please try again.');
         });
     }
 
@@ -41,6 +49,23 @@
         var confirmPassword = $scope.confirmPassword;
         var name = $scope.name;
         var email = $scope.email;
+
+        if (username.length < 6) {
+            poppy.pop('error', 'Error', 'The username must be atleast 6 characters long');
+            return;
+        } else if (password !== confirmPassword) {
+            poppy.pop('error', 'Error', 'The passwords don\'t match');
+            return;
+        } else if (password.length < 6) {
+            poppy.pop('error', 'Error', 'The password must be atleast 6 characters long');
+            return;
+        } else if (name.length < 6) {
+            poppy.pop('error', 'Error', 'The name must be atleast 6 characters long');
+            return;
+        } else if (email.indexOf('@') < 0 || email.length < 4) {
+            poppy.pop('error', 'Error', 'The email is invalid');
+            return;
+        }
 
         var data = {
             'username': username,
@@ -66,6 +91,19 @@
         var profileImage = $('#profilePictureData').attr('src');
         var gender = $scope.userData.gender;
 
+        if (gender.toLowerCase() !== 'other' && 
+            gender.toLowerCase() !== 'male' &&
+            gender.toLowerCase() !== 'female') {
+            poppy.pop('error', 'Error', 'The gender is invalid');
+            return;
+        } else if (name.length < 6) {
+            poppy.pop('error', 'Error', 'The name must be atleast 6 characters long');
+            return;
+        } else if (email.indexOf('@') < 0 || email.length < 4) {
+            poppy.pop('error', 'Error', 'The email is invalid');
+            return;
+        }
+
         var data = {};
         data['name'] = name;
         data['email'] = email;
@@ -78,6 +116,32 @@
             authenticationService.setProfileImage(profileImage);
         }, function (errorMessage) {
             poppy.pop('error', 'Error', 'An error occured while trying to edit the profile');
+        });
+    }
+
+    $scope.changePassword = function () {
+        var oldPassword = $scope.oldPassword;
+        var newPassword = $scope.newPassword;
+        var confirmPassword = $scope.confirmPassword;
+
+        if (newPassword !== confirmPassword) {
+            poppy.pop('error', 'Error', 'The passwords don\'t match');
+            return;
+        } else if (newPassword.length < 6) {
+            poppy.pop('error', 'Error', 'The password length must be atleast 6 characters long');
+            return;
+        }
+
+        var data = {
+            'oldPassword': oldPassword,
+            'newPassword': newPassword,
+            'confirmPassword' : confirmPassword
+        }
+
+        authenticationService.changePassword(data, function(successData) {
+            $scope.navigateToPage('You have changed your password successfully');
+        }, function(error) {
+            poppy.pop('error', 'Error', 'The old password is incorrect');
         });
     }
 

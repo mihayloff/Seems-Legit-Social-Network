@@ -25,20 +25,16 @@ app.run(function ($rootScope) {
 
 app.config(function ($routeProvider) {
     $routeProvider
-        .when('/login', {
-            templateUrl: 'templates/login.html',
-            controller: 'MainController'
-        })
-        .when('/register', {
-            templateUrl: 'templates/register.html',
-            controller: 'MainController'
-        })
         .when('/', {
             templateUrl: 'templates/home.html',
             controller: 'MainController'
         })
         .when('/EditProfile', {
             templateUrl: 'templates/editProfile.html',
+            controller: 'MainController'
+        })
+        .when('/ChangePassword', {
+            templateUrl: 'templates/changePassword.html',
             controller: 'MainController'
         })
         .when('/Login', {

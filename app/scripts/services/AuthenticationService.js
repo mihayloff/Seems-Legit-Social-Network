@@ -28,6 +28,15 @@
             });
     }
 
+    service.changePassword = function(data, success, error) {
+        $http.put(serviceUrl + '/me/changepassword', data, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.getDataAboutMe = function(success, error) {
         $http.get(serviceUrl + '/me', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
