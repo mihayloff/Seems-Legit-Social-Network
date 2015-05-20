@@ -13,7 +13,7 @@
     }
 
     service.sendFriendRequest = function(username, success, error) {
-        $http.post(serviceUrl + '/me/requests/' + username, { headers: this.getHeaders() })
+        $http.post(serviceUrl + '/me/requests/' + username, {}, { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {
@@ -32,6 +32,24 @@
 
     service.rejectFriendRequest = function (id, success, error) {
         $http.put(serviceUrl + '/me/requests/' + id + '?status=delete', {}, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getOwnFriendsPreview = function(success, error) {
+        $http.get(serviceUrl + '/me/friends/preview', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getOwnFriendsDetails = function (success, error) {
+        $http.get(serviceUrl + '/me/friends', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {

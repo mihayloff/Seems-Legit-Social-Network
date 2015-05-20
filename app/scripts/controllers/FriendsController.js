@@ -23,4 +23,20 @@
             poppy.pop('error', 'Error', 'There was an error rejecting the request');
         });
     }
+
+    $scope.getOwnFriendsPreview = function () {
+        friendsManagerService.getOwnFriendsPreview(function(serverData) {
+            $scope.ownFriendsPreview = serverData;
+        }, function(error) {
+            poppy.pop('error', 'Error', 'There was an error getting the friends preview');
+        });
+    }
+
+    $scope.getFriendsDetails = function () {
+        friendsManagerService.getOwnFriendsDetails(function (serverData) {
+            $scope.friendsDetails = serverData;
+        }, function (error) {
+            poppy.pop('error', 'Error', 'There was an error getting the friends details');
+        });
+    }
 });

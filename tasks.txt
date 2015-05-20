@@ -6,15 +6,17 @@ Tasks:
 
 3. Login - Show Profile Image ---- DONE
 
+-- Validate session token on login
+
 4. Show news feed
 
 5. Show friend requests - DONE
 
-6. Search people
+6. Search people - DONE
 
-7. Send people friend requests
+7. Send people friend requests - DONE
 
-8. Show Friends preview
+8. Show Friends preview - DONE
 
 9. Add comments to posts.
 

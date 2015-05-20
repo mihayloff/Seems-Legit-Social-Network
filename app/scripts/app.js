@@ -53,6 +53,18 @@ app.config(function ($routeProvider) {
             templateUrl: 'templates/register.html',
             controller: 'MainController'
         })
+        .when('/Search/:id', {
+            templateUrl: 'templates/search.html',
+            controller: 'MainController'
+        })
+        .when('/User/:id', {
+            templateUrl: 'templates/user.html',
+            controller: 'MainController'
+        })
+        .when('/OwnFriends', {
+            templateUrl: 'templates/friendsDetailedList.html',
+            controller: 'MainController'
+        })
         .otherwise({ redirectTo: '/' });
 
 });

@@ -1,0 +1,11 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main" ng-controller="FriendsController" ng-init="getFriendsDetails()">
+    <h2 class="btn-danger totalFriends">{{name}} - Friends ({{ friendsDetails.length }} Total)</h2>
+    <ul>
+        <li ng-repeat="friend in friendsDetails" class="btn-primary friendDetails">
+            <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 200px; height:200px" /></a>
+            <div style="text-align: center;">{{friend.name}}</div>
+        </li>
+    </ul>
+</div>

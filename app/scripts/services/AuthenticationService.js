@@ -46,6 +46,24 @@
             });
     }
 
+    service.searchUsers = function (id, success, error) {
+        $http.get(serviceUrl + '/users/search?searchTerm=' + id, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getUserFullData = function (id, success, error) {
+        $http.get(serviceUrl + '/users/' + id, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.setCredentials = function (serverData) {
         localStorage['sessionToken'] = serverData.access_token;
         localStorage['username'] = serverData.userName;
@@ -53,6 +71,10 @@
 
     service.setProfileImage = function(profileImage) {
         localStorage['profileImage'] = profileImage;
+    }
+
+    service.setName = function(name) {
+        localStorage['name'] = name;
     }
 
     service.getUsername = function () {

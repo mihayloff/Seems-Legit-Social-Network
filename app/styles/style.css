@@ -12,6 +12,112 @@ body {
     border-bottom: solid 1px #757575;
 }
 
+.friendsPreview {
+    display: inline-block !important;
+    width: 537px !important;
+    margin-right: 15px !important;
+    position: absolute !important;
+    top: 100px !important;
+    right: 10px !important;
+}
+
+.likeButton {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.likeButton:hover {
+    cursor: pointer;
+}
+
+.commentButton {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.commentButton:hover {
+    cursor: pointer;
+}
+
+.commentsButton {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.commentsButton:hover {
+    cursor: pointer;
+}
+
+.postContent:hover {
+    background: #5BC0DE !important;
+}
+
+.post:hover {
+    background: white !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.post {
+    width: 600px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.friendPreview {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.totalFriends {
+    text-align: center;
+    padding: 10px;
+    height: 50px;
+}
+
+.totalFriends:hover {
+    background: #D9534F !important;
+}
+
+.friendDetails {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    display: inline-block;
+}
+
+.totalCount {
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+
+.totalCount:hover {
+    background: #D9534F !important;
+}
+
+.resultImage {
+    width: 150px;
+    height: 150px;
+}
+
+.searchResult {
+    border-radius: 10px;
+    margin: 10px;
+    width: 400px;
+}
+
+.searchResult:hover {
+    background: inherit;
+}
+
 .chooseCover {
     width: 600px;
     height: 100px;
@@ -124,7 +230,6 @@ img.thumbnail {
 
 #searchBox {
     margin: 7px;
-    margin-left: 160px;
     border-radius: 10px;
     border: 1px solid #337AAD;
     background: #CCC;

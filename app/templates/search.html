@@ -1,0 +1,12 @@
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main" ng-init="search()">
+    <ul>
+        <li ng-repeat="result in searchResults" class="searchResult btn-success" style="display: inline-block;">
+            <img src="{{result.profileImageData}}" class="resultImage" />
+            <div style="display: inline;">
+                <a href="#/User/{{result.username}}" style="color: white;" class="userName" data-id="{{result.username}}" ng-init="setHoverEvents()">{{result.name}}</a>
+            </div>
+        </li>
+    </ul>
+</div>

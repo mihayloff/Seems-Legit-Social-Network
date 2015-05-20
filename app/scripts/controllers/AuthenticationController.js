@@ -30,6 +30,7 @@
             authenticationService.setCredentials(serverData);
             authenticationService.getDataAboutMe(function(successData) {
                 authenticationService.setProfileImage(successData.profileImageData);
+                authenticationService.setName(successData.name);
 
                 $scope.navigateToPage('You have logged in successfully.');
             }, function() {
