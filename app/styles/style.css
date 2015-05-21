@@ -16,6 +16,14 @@ body {
     padding: 5px;
 }
 
+.newPost {
+      position: absolute !important;
+      width: 537px !important;
+      height: 294px !important;
+      top: 308px !important;
+      right: 25px !important;
+}
+
 .submitButton {
     padding: 5px;
     margin-top: 5px;
@@ -181,10 +189,13 @@ ul {
     display: block;
     width: 70%;
     margin: 0 auto;
+    margin-top: -20px;
+    background-position: center center;
 }
 
-.header {
-    background-position: center center;
+.postTextArea {
+    margin: 10px;
+    background: #c0c0c0;
 }
 
 .header .image-container {

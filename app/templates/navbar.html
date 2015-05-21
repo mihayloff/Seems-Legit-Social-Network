@@ -21,7 +21,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="navbar-brand" id="usernamePreview">
+                    <a class="navbar-brand" id="usernamePreview" href="#/User/{{ username }}">
                         <u>{{ name }}</u>
                     </a>
                 </li>
@@ -49,7 +49,7 @@
         <img class="thumbnail" src="{{userPreviewData.profileImageData}}"/>
     </div>
     <div class="hover-profile-info" ng-if="hasLoadedPreview()">
-        <p class="hover-profile-name">{{userPreviewData.name}}</p>
+        <p class="hover-profile-name"><a href="#/User/{{ userPreviewData.username }}">{{userPreviewData.name}}</a></p>
         <p>
             <div class="btn btn-primary" ng-if="!isFriend() && !isFriendRequestSent() && !isSelf()" ng-click="sendFriendRequest()">Invite</div>
             <div class="btn btn-warning" ng-if="!isFriend() && isFriendRequestSent() && !isSelf()">Friend request sent</div>

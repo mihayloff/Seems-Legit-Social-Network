@@ -1,13 +1,23 @@
-﻿<div class="main" ng-controller="PostsController" ng-init="getNewsFeed()">
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div>
+    <header class="header" id="header" ng-init="initialiseWallOwnerData()" style="background-size: cover; background-position: center center;">
+        <div class="image-container" id="userProfileImage">
+            <img class="thumbnail" src="{{wallOwner.profileImageData}}"/>
+        </div>
+        <div class="summary-container" id="userSummary">
+            <h2>{{ wallOwner.name }}</h2>
+        </div>
+    </header>
+</div>
+<div class="main" ng-controller="PostsController" ng-init="getWallOwnerPosts()">
     <ul>
-        <li ng-repeat="post in newsFeed" class="btn-default post">
-            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt="" />
+        <li ng-repeat="post in wallPosts" class="btn-default post">
+            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt=""/>
             <div style="display: inline;">
                 <a href="#/User/{{post.author.username}}" class="userName" data-id="{{post.author.username}}">{{post.author.name}}</a>
-                posted on
-                <a href="#/User/{{post.wallOwner.username}}" class="userName" data-id="{{post.wallOwner.username}}">{{ post.wallOwner.name}}</a>'s wall
             </div>
-            <br />
+            <br/>
             <div class="postDate" style="display: inline;">{{post.date | date }}</div>
             <div class="postContent btn-info" style="margin: 5px; padding: 5px;">{{ post.postContent }}</div>
             <div style="text-align: right;">
@@ -18,7 +28,7 @@
                 <span class="btn-primary commentButton" ng-click="showUserComment(post.id)">Comment</span>
             </div>
             <div class="userComment" id="userComment{{post.id}}" style="margin-top: 10px; margin-bottom: 10px; display: none;">
-                <textarea style="background:#c0c0c0" name cols="60" rows="4" id="userCommentContent{{post.id}}"></textarea>
+                <textarea style="background: #c0c0c0" name cols="60" rows="4" id="userCommentContent{{post.id}}"></textarea>
                 <div style="text-align: right;">
                     <span class="cancelButton btn-danger" ng-click="cancelComment(post.id)">Cancel</span>
                     <span class="submitButton btn-primary" ng-click="submitComment(post.id)">Submit</span>
@@ -27,7 +37,7 @@
             <div id="comments-{{post.id}}" style="display: none;">
                 <ul>
                     <li ng-repeat="comment in post.comments" class="commentBox" ng-init="setHoverEvents()">
-                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt="" />
+                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt=""/>
                         <div style="display: inline;">
                             <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
                         </div>
@@ -44,13 +54,21 @@
         </li>
     </ul>
 </div>
-<div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getOwnFriendsPreview()">
+<div class="newPost panel pull-right panel-info col-xs-12" ng-controller="FriendsController">
+    <textarea class="postTextArea" id="postTextArea" name cols="50" rows="8"></textarea>
+    <div style="text-align: right;">
+        <span class="submitButton btn-primary" style="margin-right: 19px !important;" ng-click="submitPost()">Submit</span>
+    </div>
+</div>
+
+    <div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getWallOwnerFriendsPreview()" style="top: 668px !important;">
     <div style="text-align: center; padding: 5px;">Friends</div>
-    <div class="btn-danger totalCount"><a href="#/{{username}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
+        <div class="btn-danger totalCount" ng-init="setCurrentUser()"><a href="#/{{currentUser}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
     <ul>
         <li ng-repeat="friend in ownFriendsPreview.friends" class="btn-primary friendPreview" style="display: inline-block; width: 200px;">
             <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 150px; height:150px" /></a>
             <div style="text-align: center;">{{friend.name}}</div>
         </li>
     </ul>
-</div>
+    </div>
+

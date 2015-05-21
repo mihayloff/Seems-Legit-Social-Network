@@ -12,6 +12,15 @@
             });
     }
 
+    service.getWallPosts = function (user, success, error) {
+        $http.get(serviceUrl + '/users/' + user + '/wall?StartPostId=&PageSize=5', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.likePost = function(id, success, error) {
         $http.post(serviceUrl + '/Posts/' + id + '/likes', {}, { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {

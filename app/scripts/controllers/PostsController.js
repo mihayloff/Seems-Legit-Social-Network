@@ -1,11 +1,18 @@
-﻿app.controller('PostsController', function ($scope, postsManagerService, $route) {
-
+﻿app.controller('PostsController', function ($scope, postsManagerService, $route, $routeParams) {
 
     $scope.getNewsFeed = function () {
         postsManagerService.getNewsFeed(function (serverData) {
             $scope.newsFeed = serverData;
         }, function (error) {
             poppy.pop('error', 'Error', 'There was an error loading the news feed');
+        });
+    }
+
+    $scope.getWallOwnerPosts = function() {
+        postsManagerService.getWallPosts($routeParams.id, function(serverData) {
+            $scope.wallPosts = serverData;
+        }, function(error) {
+            poppy.pop('error', 'Error', 'There was an error loading the wall posts');
         });
     }
 

@@ -14,6 +14,17 @@
         });
     }
 
+    $scope.initialiseWallOwnerData = function () {
+
+        authenticationService.getUserFullData($routeParams.id, function(serverData) {
+            $scope.wallOwner = serverData;
+            //$('#header').css('background-image', 'url(' + serverData.coverImageData + ')');
+            $('.header').css('background-image', 'url(' + serverData.coverImageData + ')');
+        }, function(error) {
+            console.log(error);
+        });
+    }
+
     $scope.setHoverEvents = function () {
         $('.userName').unbind('mouseenter');
         $('.userName').unbind('mouseleave');

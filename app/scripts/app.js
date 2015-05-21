@@ -58,10 +58,14 @@ app.config(function ($routeProvider) {
             controller: 'MainController'
         })
         .when('/User/:id', {
-            templateUrl: 'templates/user.html',
+            templateUrl: 'templates/wall.html',
             controller: 'MainController'
         })
         .when('/OwnFriends', {
+            templateUrl: 'templates/friendsDetailedList.html',
+            controller: 'MainController'
+        })
+        .when('/:id/Friends', {
             templateUrl: 'templates/friendsDetailedList.html',
             controller: 'MainController'
         })

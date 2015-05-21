@@ -3,6 +3,17 @@
 
     var serviceUrl = baseServiceUrl;
 
+    service.newPost = function (user, content, success, error) {
+        $http.post(serviceUrl + '/posts',
+            { 'postContent': content, 'username': user },
+            { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.getFriendRequests = function(success, error) {
         $http.get(serviceUrl + '/me/requests', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
@@ -50,6 +61,24 @@
 
     service.getOwnFriendsDetails = function (success, error) {
         $http.get(serviceUrl + '/me/friends', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getUserFriendsPreview = function (user, success, error) {
+        $http.get(serviceUrl + '/users/' + user + '/friends/preview', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getUserFriendsDetails = function (user, success, error) {
+        $http.get(serviceUrl + '/users/' + user + '/friends', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {
