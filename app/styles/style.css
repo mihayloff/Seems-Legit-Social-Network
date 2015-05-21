@@ -12,6 +12,32 @@ body {
     border-bottom: solid 1px #757575;
 }
 
+.commentBox {
+    padding: 5px;
+}
+
+.submitButton {
+    padding: 5px;
+    margin-top: 5px;
+    margin-right: 13px !important;
+}
+
+.cancelButton {
+    padding: 5px;
+    margin-top: 5px;
+    margin-right: 5px !important;
+}
+
+.commentContent {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.commentContent:hover {
+    background: #337AB7 !important;
+}
+
 .friendsPreview {
     display: inline-block !important;
     width: 537px !important;
@@ -251,6 +277,14 @@ img.smallThumbnail {
     width: 50px;
     height: 50px;
     margin: 0;
+}
+
+.cancelButton:hover {
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    cursor: pointer;
 }
 
 .hover-box {

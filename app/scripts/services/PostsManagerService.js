@@ -30,6 +30,35 @@
             });
     }
 
+    service.likeComment = function (postId, commentId, success, error) {
+        $http.post(serviceUrl + '/posts/' + postId + '/comments/' + commentId + '/likes', {}, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.unlikeComment = function (postId, commentId, success, error) {
+        $http.delete(serviceUrl + '/posts/' + postId + '/comments/' + commentId + '/likes', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.commentPost = function(postId, content, success, error) {
+        $http.post(serviceUrl + '/posts/' + postId + '/comments',
+            { 'commentContent': content },
+            { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.getHeaders = function () {
         return {
             Authorization: "Bearer " + localStorage['sessionToken']

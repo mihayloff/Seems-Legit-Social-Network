@@ -51,9 +51,9 @@
     <div class="hover-profile-info" ng-if="hasLoadedPreview()">
         <p class="hover-profile-name">{{userPreviewData.name}}</p>
         <p>
-            <div class="btn btn-primary" ng-if="!isFriend() && !isFriendRequestSent()" ng-click="sendFriendRequest()">Invite</div>
-            <div class="btn btn-warning" ng-if="!isFriend() && isFriendRequestSent()">Friend request sent</div>
-            <div class="btn btn-info" ng-if="isFriend()">Friend</div>
+            <div class="btn btn-primary" ng-if="!isFriend() && !isFriendRequestSent() && !isSelf()" ng-click="sendFriendRequest()">Invite</div>
+            <div class="btn btn-warning" ng-if="!isFriend() && isFriendRequestSent() && !isSelf()">Friend request sent</div>
+            <div class="btn btn-info" ng-if="isFriend() && !isSelf()">Friend</div>
         </p>
     </div>
 </div>

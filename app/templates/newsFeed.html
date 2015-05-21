@@ -1,9 +1,11 @@
 ﻿<div class="main" ng-controller="PostsController" ng-init="getNewsFeed()">
     <ul>
         <li ng-repeat="post in newsFeed" class="btn-default post">
-            <img src="{{post.author.profileImageData}}" alt="" />
+            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt="" />
             <div style="display: inline;">
-                <a href="#/User/{{post.author.username}}">{{post.author.name}}</a> posted on <a href="#/User/{{post.wallOwner.username}}">{{ post.wallOwner.name}}</a>'s wall
+                <a href="#/User/{{post.author.username}}" class="userName" data-id="{{post.author.username}}">{{post.author.name}}</a>
+                posted on
+                <a href="#/User/{{post.wallOwner.username}}" class="userName" data-id="{{post.wallOwner.username}}">{{ post.wallOwner.name}}</a>'s wall
             </div>
             <br />
             <div class="postDate" style="display: inline;">{{post.date | date }}</div>
@@ -12,7 +14,32 @@
                 {{post.likesCount}}
                 <span class="likeButton btn-success" ng-if="!post.liked" ng-click="likePost(post.id)">Like</span>
                 <span class="likeButton btn-danger" ng-if="post.liked" ng-click="unlikePost(post.id)">Unlike</span>
-                <span class="btn-warning btn commentsButton" ng-click="showComments()">{{post.comments.length}} Comments</span> <span class="btn-primary commentButton">Comment</span>
+                <span class="btn-warning btn commentsButton" ng-click="showComments(post.id)">{{post.comments.length}} Comments</span>
+                <span class="btn-primary commentButton" ng-click="showUserComment(post.id)">Comment</span>
+            </div>
+            <div class="userComment" id="userComment{{post.id}}" style="margin-top: 10px; margin-bottom: 10px; display: none;">
+                <textarea style="background:#c0c0c0" name cols="60" rows="4" id="userCommentContent{{post.id}}"></textarea>
+                <div style="text-align: right;">
+                    <span class="cancelButton btn-danger" ng-click="cancelComment(post.id)">Cancel</span>
+                    <span class="submitButton btn-primary" ng-click="submitComment(post.id)">Submit</span>
+                </div>
+            </div>
+            <div id="comments-{{post.id}}" style="display: none;">
+                <ul>
+                    <li ng-repeat="comment in post.comments" class="commentBox" ng-init="setHoverEvents()">
+                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt="" />
+                        <div style="display: inline;">
+                            <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
+                        </div>
+                        <div>{{ comment.date | date }}</div>
+                        <div class="commentContent btn-primary">{{ comment.commentContent }}</div>
+                        <div style="text-align: right;">
+                            {{comment.likesCount}}
+                            <span class="likeButton btn-success" ng-if="!comment.liked" ng-click="likeComment(post.id, comment.id)">Like</span>
+                            <span class="likeButton btn-danger" ng-if="comment.liked" ng-click="unlikeComment(post.id, comment.id)">Unlike</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </li>
     </ul>

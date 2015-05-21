@@ -68,6 +68,14 @@
         return $scope.userPreviewData.isFriend;
     }
 
+    $scope.isSelf = function() {
+        if ($scope.userPreviewData.username == localStorage['username']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     $scope.sendFriendRequest = function() {
         friendsManagerService.sendFriendRequest($scope.userPreviewData.username, function(serverData) {
             poppy.pop('success', 'Success', 'Friend request sent successfully');
