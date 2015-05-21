@@ -54,14 +54,14 @@
         </li>
     </ul>
 </div>
-<div class="newPost panel pull-right panel-info col-xs-12" ng-controller="FriendsController">
+<div class="newPost panel pull-right panel-info col-xs-12" ng-controller="FriendsController" ng-if="isWallOwnerFriend()">
     <textarea class="postTextArea" id="postTextArea" name cols="50" rows="8"></textarea>
     <div style="text-align: right;">
         <span class="submitButton btn-primary" style="margin-right: 19px !important;" ng-click="submitPost()">Submit</span>
     </div>
 </div>
 
-    <div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getWallOwnerFriendsPreview()" style="top: 668px !important;">
+    <div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getWallOwnerFriendsPreview()" ng-if="isWallOwnerFriend()" style="top: 668px !important;">
     <div style="text-align: center; padding: 5px;">Friends</div>
         <div class="btn-danger totalCount" ng-init="setCurrentUser()"><a href="#/{{currentUser}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
     <ul>

@@ -80,7 +80,7 @@
     }
 
     $scope.isSelf = function() {
-        if ($scope.userPreviewData.username == localStorage['username']) {
+        if ($scope.userPreviewData.username === localStorage['username']) {
             return true;
         } else {
             return false;

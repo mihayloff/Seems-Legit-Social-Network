@@ -12,6 +12,14 @@
         });
     }
 
+    $scope.isWallOwnerFriend = function() {
+        authenticationService.getUserFullData($route.id, function(serverData) {
+            return serverData.isFriend;
+        }, function(error) {
+            return false;
+        });
+    }
+
     $scope.getFriendRequests = function() {
         friendsManagerService.getFriendRequests(function(serverData) {
             $scope.friendRequests = serverData;

@@ -30,45 +30,93 @@ app.config(function ($routeProvider) {
             controller: 'MainController'
         })
         .when('/FriendRequests', {
-            templateUrl: 'templates/friendRequests.html',
-            controller: 'MainController'
+        templateUrl: 'templates/friendRequests.html',
+        controller: 'MainController',
+        resolve: {
+            factory: redirectToHomeIfNotLogged
+        }
         })
         .when('/Search/:id', {
             templateUrl: 'templates/searchResults.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/EditProfile', {
             templateUrl: 'templates/editProfile.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/ChangePassword', {
             templateUrl: 'templates/changePassword.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/Login', {
             templateUrl: 'templates/login.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfLogged
+            }
         })
         .when('/Register', {
             templateUrl: 'templates/register.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfLogged
+            }
         })
         .when('/Search/:id', {
             templateUrl: 'templates/search.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/User/:id', {
             templateUrl: 'templates/wall.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/OwnFriends', {
             templateUrl: 'templates/friendsDetailedList.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .when('/:id/Friends', {
             templateUrl: 'templates/friendsDetailedList.html',
-            controller: 'MainController'
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
         })
         .otherwise({ redirectTo: '/' });
 
 });
+
+function redirectToHomeIfNotLogged() {
+    if (!localStorage['sessionToken']) {
+        var splitted = window.location.href.split('#');
+        window.location.replace(splitted[0] + '#/');
+
+        poppy.pop('error', 'Error', 'You must be logged in to access this page');
+    }
+}
+
+function redirectToHomeIfLogged() {
+    if (localStorage['sessionToken']) {
+        var splitted = window.location.href.split('#');
+        window.location.replace(splitted[0] + '#/');
+
+        poppy.pop('error', 'Error', 'You have already logged in');
+    }
+}
