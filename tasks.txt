@@ -6,24 +6,33 @@ Tasks:
 
 3. Login - Show Profile Image ---- DONE
 
--- Validate session token on login
-
-4. Show news feed
+4. Show news feed ---- DONE
 
 5. Show friend requests - DONE
 
 6. Search people - DONE
 
-7. Send people friend requests - DONE
+7. Send people friend requests ---- DONE
 
-8. Show Friends preview - DONE
+8. Show Friends preview ---- DONE
 
-9. Add comments to posts.
+9. Add comments to posts. ---- DONE
 
 10. Change Password ---- DONE
 
-11. Post messages to friends wall
+11. Post messages to friends wall ---- DONE
 
-12. Like/Unlike comments and posts
+12. Like/Unlike comments and posts ---- DONE
 
 13. Add picture size validation in file reader
+
+14. Add validation for non-friends wall
+
+15. Add cross-route validation
+
+16. Fix edit profile validation
+
+17. Make dynamic pagination
+
+-- Validate session token once in a while
+
