@@ -4,6 +4,11 @@
         postsManagerService.getNewsFeed(function (serverData) {
             $scope.newsFeed = serverData;
         }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error loading the news feed');
         });
     }
@@ -11,7 +16,12 @@
     $scope.getWallOwnerPosts = function() {
         postsManagerService.getWallPosts($routeParams.id, function(serverData) {
             $scope.wallPosts = serverData;
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error loading the wall posts');
         });
     }
@@ -87,11 +97,65 @@
         postsManagerService.commentPost(id, content, function (serverData) {
             $route.reload();
             poppy.pop('success', 'Success', 'Post commented successfully.');
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error commenting the post.');
         });
 
         userCommentContent.val('');
         userComment.css('display', 'none');
+    }
+
+    $scope.deletePost = function(id) {
+        postsManagerService.deletePost(id, function(serverData) {
+            $route.reload();
+            poppy.pop('success', 'Success', 'The post has been deleted successfully');
+        }, function(error) {
+            poppy.pop('error', 'Error', 'An error occured when trying to delete the post');
+        });
+    }
+
+    $scope.deleteComment = function (postId, commentId) {
+        postsManagerService.deleteComment(postId, commentId, function (serverData) {
+            $route.reload();
+            poppy.pop('success', 'Success', 'The comment has been deleted successfully');
+        }, function (error) {
+            poppy.pop('error', 'Error', 'An error occured when trying to delete the comment');
+        });
+    }
+
+    $scope.getPostDetails = function() {
+        postsManagerService.getPostDetails($routeParams.id, function(serverData) {
+            $scope.post = serverData;
+        }, function(error) {
+            poppy.pop('error', 'Error', 'An error occured when trying to load the post details');
+        });
+    }
+
+    $scope.isDeletablePost = function(post) {
+        if (post.author.username === localStorage['username'] ||
+                post.wallOwner.username === localStorage['username']) {
+            return true;
+        }
+        return false;
+    }
+
+    $scope.isDeletableComment = function(commentAuthor, postAuthor) {
+        return commentAuthor.username === localStorage['username'] ||
+            postAuthor.username === localStorage['username'];
+    }
+
+    $scope.isPostOwnerOrAuthorFriend = function(post) {
+        return post.author.isFriend || post.wallOwner.isFriend ||
+            (post.author.username === localStorage['username']) ||
+            (post.wallOwner.username === localStorage['username']);
+    }
+
+    $scope.exceededCommentsCount = function(length) {
+        return length > 3;
     }
 });

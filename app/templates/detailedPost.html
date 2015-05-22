@@ -1,26 +1,14 @@
-﻿<div ng-include="'templates/navbar.html'"></div>
-
-<div>
-    <header class="header" id="header" ng-init="initialiseWallOwnerData()" style="margin-top: -20px; background-size: cover; background-position: center center;">
-        <div class="image-container" id="userProfileImage">
-            <img class="thumbnail" src="{{wallOwner.profileImageData}}"/>
-        </div>
-        <div class="summary-container" id="userSummary">
-            <h2>{{ wallOwner.name }}</h2>
-        </div>
-    </header>
-</div>
-<div class="main" ng-controller="PostsController" ng-init="getWallOwnerPosts()">
+﻿<div class="main" ng-controller="PostsController" ng-init="getPostDetails()">
     <ul>
-        <li ng-repeat="post in wallPosts" class="btn-default post">
+        <li class="btn-default post">
             <div style="text-align: right;">
                 <button class="btn btn-danger" ng-if="isDeletablePost(post)" ng-click="deletePost(post.id)">Delete</button>
             </div>
-            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt=""/>
+            <img src="{{post.author.profileImageData}}" class="smallThumbnail" alt="" />
             <div style="display: inline;">
                 <a href="#/User/{{post.author.username}}" class="userName" data-id="{{post.author.username}}">{{post.author.name}}</a>
             </div>
-            <br/>
+            <br />
             <div class="postDate" style="display: inline;">{{post.date | date }}</div>
             <div class="postContent btn-info" style="margin: 5px; padding: 5px;">{{ post.postContent }}</div>
             <div style="text-align: right;">
@@ -40,7 +28,7 @@
             <div id="comments-{{post.id}}" style="display: none;">
                 <ul>
                     <li ng-repeat="comment in post.comments" class="commentBox" ng-init="setHoverEvents()">
-                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt=""/>
+                        <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt="" />
                         <div style="display: inline;">
                             <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
                         </div>
@@ -55,29 +43,9 @@
                     </li>
                 </ul>
                 <div style="text-align: center;" ng-if="exceededCommentsCount(post.totalCommentsCount)">
-                    <a href="#/Post/{{post.id}}"><button class="btn btn-info" ng-click="showPostDetails(post.id)">More</button></a>
+                    <button class="btn btn-info" ng-click="showPostDetails(post.id)">More</button>
                 </div>
             </div>
         </li>
     </ul>
 </div>
-<div ng-controller="FriendsController">
-    <div class="newPost panel pull-right panel-info col-xs-12" ng-controller="FriendsController">
-        <textarea class="postTextArea" id="postTextArea" name cols="50" rows="8"></textarea>
-        <div style="text-align: right;">
-            <span class="submitButton btn-primary" style="margin-right: 19px !important;" ng-click="submitPost()">Submit</span>
-        </div>
-    </div>
-</div>
-
-    <div class="friendsPreview panel pull-right panel-info friends-preview col-xs-12" ng-controller="FriendsController" ng-init="getWallOwnerFriendsPreview()" style="top: 668px !important;">
-        <div style="text-align: center; padding: 5px;">Friends</div>
-        <div class="btn-danger totalCount" ng-init="setCurrentUser()"><a href="#/{{currentUser}}/Friends" style="color: white;">Total Count: {{ ownFriendsPreview.totalCount }}</a></div>
-        <ul>
-            <li ng-repeat="friend in ownFriendsPreview.friends" class="btn-primary friendPreview" style="display: inline-block; width: 200px;">
-                <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 150px; height:150px" /></a>
-                <div style="text-align: center;">{{friend.name}}</div>
-            </li>
-        </ul>
-    </div>
-

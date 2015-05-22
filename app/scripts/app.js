@@ -21,6 +21,10 @@ app.run(function ($rootScope) {
             poppy.pop('success', 'Success', message);
         }
     }
+
+    $rootScope.clearCredentials = function () {
+        localStorage.clear();
+    }
 });
 
 app.config(function ($routeProvider) {
@@ -94,6 +98,13 @@ app.config(function ($routeProvider) {
         })
         .when('/:id/Friends', {
             templateUrl: 'templates/friendsDetailedList.html',
+            controller: 'MainController',
+            resolve: {
+                factory: redirectToHomeIfNotLogged
+            }
+        })
+        .when('/Post/:id', {
+            templateUrl: 'templates/detailedPost.html',
             controller: 'MainController',
             resolve: {
                 factory: redirectToHomeIfNotLogged

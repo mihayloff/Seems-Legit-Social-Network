@@ -8,22 +8,24 @@
         authenticationService.getUserFullData($routeParams.id, function(serverData) {
             $scope.currentName = serverData.name;
         }, function(error) {
-            
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
         });
     }
 
-    $scope.isWallOwnerFriend = function() {
-        authenticationService.getUserFullData($route.id, function(serverData) {
-            return serverData.isFriend;
-        }, function(error) {
-            return false;
-        });
-    }
 
     $scope.getFriendRequests = function() {
         friendsManagerService.getFriendRequests(function(serverData) {
             $scope.friendRequests = serverData;
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error loading the requests');
         });
     }
@@ -39,7 +41,12 @@
         friendsManagerService.newPost(user, content, function (serverData) {
             $route.reload();
             poppy.pop('success', 'Success', 'New post created successfully');
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'An error occured when trying to submit the post');
         });
     }
@@ -47,7 +54,12 @@
     $scope.acceptFriendRequest = function(id) {
         friendsManagerService.acceptFriendRequest(id, function(successData) {
             $scope.navigateToPage('Request accepted successfully', '#/FriendRequests');
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error approving the request');
         });
     }
@@ -56,6 +68,11 @@
         friendsManagerService.rejectFriendRequest(id, function (successData) {
             $scope.navigateToPage('Request rejected successfully', '#/FriendRequests');
         }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error rejecting the request');
         });
     }
@@ -63,7 +80,12 @@
     $scope.getOwnFriendsPreview = function () {
         friendsManagerService.getOwnFriendsPreview(function(serverData) {
             $scope.ownFriendsPreview = serverData;
-        }, function(error) {
+        }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error getting the friends preview');
         });
     }
@@ -73,10 +95,18 @@
             $scope.getOwnFriendsPreview();
             return;
         }
+
         friendsManagerService.getUserFriendsPreview($routeParams.id, function(serverData) {
             $scope.ownFriendsPreview = serverData;
-        }, function(error) {
-            poppy.pop('error', 'Error', 'There was an error getting the friends preview');
+        }, function (error) {
+            $('.friendsPreview').attr('style', 'display: none !important');
+            $('.newPost').attr('style', 'display: none !important');
+
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
         });
     }
 
@@ -88,6 +118,11 @@
         friendsManagerService.getUserFriendsDetails($routeParams.id, function (serverData) {
             $scope.friendsDetails = serverData;
         }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error getting the friends details');
         });
     }
@@ -96,6 +131,11 @@
         friendsManagerService.getOwnFriendsDetails(function (serverData) {
             $scope.friendsDetails = serverData;
         }, function (error) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error getting the friends details');
         });
     }

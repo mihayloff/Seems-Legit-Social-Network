@@ -12,7 +12,12 @@
 
             $('#gender' + serverData.gender).attr('checked', true);
 
-        }, function() {
+        }, function () {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'There was an error retrieving the user data from the server');
         });
     }
@@ -40,6 +45,7 @@
             })
 
         }, function (error) {
+
             poppy.pop('error', 'Error', 'The username or password are incorrect. Please try again.');
         });
     }
@@ -116,6 +122,11 @@
             $scope.navigateToPage(serverData.message);
             authenticationService.setProfileImage(profileImage);
         }, function (errorMessage) {
+            if (error.message === "Session token expired or not valid.") {
+                $scope.clearCredentials();
+                $scope.navigateToPage("Your session has expired. Please login again");
+                return;
+            }
             poppy.pop('error', 'Error', 'An error occured while trying to edit the profile');
         });
     }

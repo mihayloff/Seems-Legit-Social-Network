@@ -4,7 +4,7 @@
     var serviceUrl = baseServiceUrl;
 
     service.getNewsFeed = function (success, error) {
-        $http.get(serviceUrl + '/me/feed?StartPostId=&PageSize=5', { headers: this.getHeaders() })
+        $http.get(serviceUrl + '/me/feed?StartPostId=&PageSize=10', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {
@@ -13,7 +13,7 @@
     }
 
     service.getWallPosts = function (user, success, error) {
-        $http.get(serviceUrl + '/users/' + user + '/wall?StartPostId=&PageSize=5', { headers: this.getHeaders() })
+        $http.get(serviceUrl + '/users/' + user + '/wall?StartPostId=&PageSize=10', { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {
@@ -61,6 +61,33 @@
         $http.post(serviceUrl + '/posts/' + postId + '/comments',
             { 'commentContent': content },
             { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.deletePost = function (postId, success, error) {
+        $http.delete(serviceUrl + '/Posts/' + postId, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.deleteComment = function (postId, commentId, success, error) {
+        $http.delete(serviceUrl + '/posts/' + postId + '/comments/' + commentId, { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
+    service.getPostDetails = function(id, success, error) {
+        $http.get(serviceUrl + '/Posts/' + id, { headers: this.getHeaders() })
             .success(function (data, status, headers, config) {
                 success(data);
             }).error(function (data) {
