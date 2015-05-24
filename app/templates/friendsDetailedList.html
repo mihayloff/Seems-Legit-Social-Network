@@ -1,10 +1,11 @@
 ﻿<div ng-include="'templates/navbar.html'"></div>
 
 <div class="main" ng-controller="FriendsController" ng-init="getWallOwnerFriendsDetails()">
+    <input type="text" value="" placeholder="Search..." ng-model="filterCriteria.name" />
     <h2 class="btn-danger totalFriends" ng-init="setCurrentName()">{{currentName}} - Friends ({{ friendsDetails.length }} Total)</h2>
     <ul>
-        <li ng-repeat="friend in friendsDetails" class="btn-primary friendDetails">
-            <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 200px; height:200px" /></a>
+        <li ng-repeat="friend in friendsDetails | filter:filterCriteria" class="btn-primary friendDetails">
+            <a href="#/User/{{friend.username}}"><img src="{{friend.profileImageData}}" alt="" style="margin-left: 12px; width: 200px; height: 200px"/></a>
             <div style="text-align: center;">{{friend.name}}</div>
         </li>
     </ul>

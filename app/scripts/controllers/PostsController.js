@@ -136,6 +136,14 @@
         });
     }
 
+    $scope.loadComments = function() {
+        postsManagerService.loadComments($routeParams.id, function(serverData) {
+            $scope.comments = serverData;
+        }, function(error) {
+            poppy.pop('error', 'Error', 'An error occured when trying to load the comments');
+        });
+    }
+
     $scope.isDeletablePost = function(post) {
         if (post.author.username === localStorage['username'] ||
                 post.wallOwner.username === localStorage['username']) {

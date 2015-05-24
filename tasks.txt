@@ -26,13 +26,18 @@ Tasks:
 
 13. Add picture size validation in file reader
 
-14. Add validation for non-friends wall
+14. Add validation for non-friends wall - Done
 
-15. Add cross-route validation
+15. Add cross-route validation - Done
 
-16. Fix edit profile validation
+16. Fix edit profile validation - Done
 
 17. Make dynamic pagination
 
--- Validate session token once in a while
+-- Validate session token once in a while - Done
 
+18. Add Delete Post - Done
+
+19. Add Delete Comment - Done
+
+20. Add Detailed post template - Done

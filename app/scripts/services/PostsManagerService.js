@@ -95,6 +95,15 @@
             });
     }
 
+    service.loadComments = function(id, success, error) {
+        $http.get(serviceUrl + '/posts/' + id + '/comments', { headers: this.getHeaders() })
+            .success(function (data, status, headers, config) {
+                success(data);
+            }).error(function (data) {
+                error(data);
+            });
+    }
+
     service.getHeaders = function () {
         return {
             Authorization: "Bearer " + localStorage['sessionToken']

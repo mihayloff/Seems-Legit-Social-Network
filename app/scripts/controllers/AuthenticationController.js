@@ -57,7 +57,7 @@
         var name = $scope.name;
         var email = $scope.email;
 
-        if (username.length < 6) {
+        if (username && username.length < 6) {
             poppy.pop('error', 'Error', 'The username must be atleast 6 characters long');
             return;
         } else if (password !== confirmPassword) {
@@ -66,10 +66,10 @@
         } else if (password.length < 6) {
             poppy.pop('error', 'Error', 'The password must be atleast 6 characters long');
             return;
-        } else if (name.length < 6) {
+        } else if (name && name.length < 6) {
             poppy.pop('error', 'Error', 'The name must be atleast 6 characters long');
             return;
-        } else if (email.indexOf('@') < 0 || email.length < 4) {
+        } else if (email.indexOf('@') < 0 || email.length < 3) {
             poppy.pop('error', 'Error', 'The email is invalid');
             return;
         }

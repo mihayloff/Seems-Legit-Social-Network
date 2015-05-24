@@ -1,4 +1,6 @@
-﻿<div class="main" ng-controller="PostsController" ng-init="getPostDetails()">
+﻿<div ng-include="'templates/navbar.html'"></div>
+
+<div class="main" ng-controller="PostsController" ng-init="getPostDetails()">
     <ul>
         <li class="btn-default post">
             <div style="text-align: right;">
@@ -26,8 +28,8 @@
                 </div>
             </div>
             <div id="comments-{{post.id}}" style="display: none;">
-                <ul>
-                    <li ng-repeat="comment in post.comments" class="commentBox" ng-init="setHoverEvents()">
+                <ul ng-init="loadComments()">
+                    <li ng-repeat="comment in comments" class="commentBox" ng-init="setHoverEvents()">
                         <img src="{{comment.author.profileImageData}}" class="smallThumbnail" alt="" />
                         <div style="display: inline;">
                             <a href="#/User/{{comment.author.username}}" class="userName" data-id="{{comment.author.username}}">{{ comment.author.name }}</a>
@@ -42,9 +44,6 @@
                         </div>
                     </li>
                 </ul>
-                <div style="text-align: center;" ng-if="exceededCommentsCount(post.totalCommentsCount)">
-                    <button class="btn btn-info" ng-click="showPostDetails(post.id)">More</button>
-                </div>
             </div>
         </li>
     </ul>

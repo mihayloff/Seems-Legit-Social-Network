@@ -85,6 +85,10 @@ body {
     cursor: pointer;
 }
 
+.postContent {
+    word-wrap: break-word;
+}
+
 .postContent:hover {
     background: #5BC0DE !important;
 }

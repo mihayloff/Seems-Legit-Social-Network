@@ -16,7 +16,6 @@
         });
     }
 
-
     $scope.getFriendRequests = function() {
         friendsManagerService.getFriendRequests(function(serverData) {
             $scope.friendRequests = serverData;
